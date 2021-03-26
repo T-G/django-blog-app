@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Blog Posts</h1>
+    
+    {% if posts %}
+        {% for post in posts %}
+            <p>
+                <a href="{{ post.get_absolute_url }}">{{ post.pk }} : {{ post.title }}</a> 
+                <span>
+                    {% if perms.blog.change_post %}
+                        [<a href="{% url 'blog:edit' post.pk %}">Edit</a>]
+                    {% endif %}
+                </span>  
+                <span>
+                    {% if perms.blog.delete_post %}
+                        [<a href="{% url 'blog:delete' post.pk %}">Delete</a>]
+                    {% endif %}
+                </span>      
+            </p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

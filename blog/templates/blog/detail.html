@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    {% if post %}
+        <h1>{{ post.title }}</h1>
+        <p>Posted {{ post.create_date|date:"M j, Y" }}</p>
+        <p>Updated {{ post.modified_date }}</p>
+        {% if post.author %} 
+            <p>{{ post.author }}</p>
+        {% endif %}
+        <p>{{ post.description }}</p>
+    {% endif %}
+
+{% endblock %}
